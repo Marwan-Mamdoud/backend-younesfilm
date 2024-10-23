@@ -125,6 +125,7 @@ export const updatePorject = async (req, res, next) => {
 
     const project = await Model.findById(id);
     let thumbnail = null;
+
     if (req.body.thumbnailImage !== "undefined") {
       thumbnail = await cloudinary.uploader.upload(thumbnailImage, {
         format: "webp",
