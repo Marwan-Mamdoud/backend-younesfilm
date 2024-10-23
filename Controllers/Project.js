@@ -124,33 +124,37 @@ export const updatePorject = async (req, res, next) => {
     } = req.body;
 
     const project = await Model.findById(id);
-    let thumbnail = null;
 
-    if (req.body.thumbnailImage !== "undefined") {
+    let thumbnail = null;
+    if (req.body.thumbnailImage) {
       thumbnail = await cloudinary.uploader.upload(thumbnailImage, {
         format: "webp",
       });
       thumbnail = thumbnail.secure_url;
     }
 
-    let imagesBehindScenes = JSON.parse(req.body.ImagesBehindScenes);
-    let images = JSON.parse(req.body.Images);
+    let imagesBehindScenes = [];
+    let images = [];
 
-    if (req.body.Images.length > 0)
+    if (JSON.parse(req.body.Images).length > 0) {
+      images = JSON.parse(req.body.Images);
       for (const img of Images) {
         const result = await cloudinary.uploader.upload(img, {
           format: "webp",
         });
         images.push(result.secure_url);
       }
+    }
 
-    if (req.body.ImagesBehindScenes.length > 0)
+    if (JSON.parse(req.body.ImagesBehindScenes).length > 0) {
+      imagesBehindScenes = JSON.parse(req.body.ImagesBehindScenes);
       for (const img of ImagesBehindScenes) {
         const result = await cloudinary.uploader.upload(img, {
           format: "webp",
         });
         imagesBehindScenes.push(result.secure_url);
       }
+    }
 
     project.name = req.body.name || project.name;
     project.thumbnail = thumbnail || project.thumbnail;
