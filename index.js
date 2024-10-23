@@ -29,8 +29,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(compression());
-app.use(express.json({ limit: "100mb" })); // Increase the limit as needed
-app.use(express.urlencoded({ limit: "100mb", extended: true }));
+app.use(bodyParser.json({ limit: "100mb" })); // Increase the limit as needed
+app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
+
 // app.use(express.json({ limit: "90mb" }));
 // app.use(express.urlencoded({ extended: true, limit: "90mb" }));
 app.use(cookieParser());
