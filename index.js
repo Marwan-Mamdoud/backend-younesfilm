@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import ProjectRoter from "./Routes/Project.js";
+import compression from "compression";
+import bodyParser from "body-parser";
 const app = express();
 app.listen(process.env.PORT || 4000, () => {
   console.log("Done Connect To Server..");
@@ -26,6 +28,10 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+app.use(compression());
+
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.json({ limit: "1gb" }));
 app.use(express.urlencoded({ extended: true, limit: "1gb" }));
 app.use(cookieParser());
