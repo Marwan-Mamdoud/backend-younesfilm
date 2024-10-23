@@ -136,8 +136,7 @@ export const updatePorject = async (req, res, next) => {
     let imagesBehindScenes = [];
     let images = [];
 
-    if (JSON.parse(req.body.Images).length > 0) {
-      images = JSON.parse(req.body.Images);
+    if (req.body.Images.length > 0) {
       for (const img of Images) {
         const result = await cloudinary.uploader.upload(img, {
           format: "webp",
@@ -146,8 +145,7 @@ export const updatePorject = async (req, res, next) => {
       }
     }
 
-    if (JSON.parse(req.body.ImagesBehindScenes).length > 0) {
-      imagesBehindScenes = JSON.parse(req.body.ImagesBehindScenes);
+    if (req.body.ImagesBehindScenes.length > 0) {
       for (const img of ImagesBehindScenes) {
         const result = await cloudinary.uploader.upload(img, {
           format: "webp",
