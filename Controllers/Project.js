@@ -133,8 +133,8 @@ export const updatePorject = async (req, res, next) => {
       thumbnail = thumbnail.secure_url;
     }
 
-    let images = [];
-    let imagesBehindScenes = [];
+    let imagesBehindScenes = JSON.parse(req.body.ImagesBehindScenes);
+    let images = JSON.parse(req.body.Images);
 
     if (req.body.Images.length > 0)
       for (const img of Images) {
@@ -179,7 +179,7 @@ export const updatePorject = async (req, res, next) => {
     console.log("Error Update Project Controller:", error.message);
     res
       .status(400)
-      .json({ error: `Error Get One Project Controller: ${error.message}` });
+      .json({ error: `Error Updata Project Controller: ${error.message}` });
   }
 };
 
