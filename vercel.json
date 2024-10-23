@@ -1,10 +1,15 @@
 {
   "installCommand": "npm install --legacy-peer-deps",
   "version": 2,
-  "functions": {
-    "api/updateProject": {
-      "maxRequestBodySize": "100mb"
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "src/**/*",
+      "use": "@vercel/static"
     }
-  },
+  ],
   "routes": [{ "src": "/(.*)", "dest": "/" }]
 }
