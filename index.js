@@ -6,16 +6,6 @@ import ProjectRoter from "./Routes/Project.js";
 import compression from "compression";
 import bodyParser from "body-parser";
 const app = express();
-
-app.use(compression());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-    parameterLimit: 100000,
-    limit: "5000000kb",
-  })
-);
-app.use(bodyParser.json({ limit: "5000000kb" })); // Increase the limit as needed
 app.listen(process.env.PORT || 4000, () => {
   console.log("Done Connect To Server..");
 });
@@ -27,6 +17,16 @@ mongoose
   .catch((err) => {
     console.log(err.message, "Database Error");
   });
+
+app.use(compression());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+    parameterLimit: 100000,
+    limit: "500mb",
+  })
+);
+app.use(bodyParser.json({ limit: "500mb" })); // Increase the limit as needed
 
 const corsOptions = {
   origin: "https://younesfilm-frontend.vercel.app", // النطاق المسموح به
