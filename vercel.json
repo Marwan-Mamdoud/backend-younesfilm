@@ -16,8 +16,5 @@
       "src": "/(.*)",
       "dest": "/"
     }
-  ],
-  "functions": {
-    "maxRequestBodySize": "100mb"
-  }
+  ]
 }
