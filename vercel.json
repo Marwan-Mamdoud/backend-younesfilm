@@ -14,10 +14,10 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/",
-      "functions": {
-        "maxRequestBodySize": "100mb"
-      }
+      "dest": "/"
     }
-  ]
+  ],
+  "functions": {
+    "maxRequestBodySize": "100mb"
+  }
 }
