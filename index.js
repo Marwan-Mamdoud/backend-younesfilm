@@ -6,6 +6,16 @@ import ProjectRoter from "./Routes/Project.js";
 import compression from "compression";
 import bodyParser from "body-parser";
 const app = express();
+
+app.use(compression());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+    parameterLimit: 100000,
+    limit: "500mb",
+  })
+);
+app.use(bodyParser.json()); // Increase the limit as needed
 app.listen(process.env.PORT || 4000, () => {
   console.log("Done Connect To Server..");
 });
@@ -26,16 +36,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
-app.use(compression());
-app.use(
-  bodyParser.urlencoded({
-    limit: "500mb",
-    parameterLimit: 100000,
-    extended: true,
-  })
-);
-app.use(bodyParser.json({ limit: "500mb" })); // Increase the limit as needed
 
 // app.use(express.json({ limit: "90mb" }));
 // app.use(express.urlencoded({ extended: true, limit: "90mb" }));
