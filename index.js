@@ -12,10 +12,10 @@ app.use(
   bodyParser.urlencoded({
     extended: true,
     parameterLimit: 100000,
-    limit: "500mb",
+    limit: "5000000kb",
   })
 );
-app.use(bodyParser.json({ limit: "500mb" })); // Increase the limit as needed
+app.use(bodyParser.json({ limit: "5000000kb" })); // Increase the limit as needed
 app.listen(process.env.PORT || 4000, () => {
   console.log("Done Connect To Server..");
 });
