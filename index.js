@@ -15,7 +15,7 @@ app.use(
     limit: "500mb",
   })
 );
-app.use(bodyParser.json()); // Increase the limit as needed
+app.use(bodyParser.json({ limit: "500mb" })); // Increase the limit as needed
 app.listen(process.env.PORT || 4000, () => {
   console.log("Done Connect To Server..");
 });
