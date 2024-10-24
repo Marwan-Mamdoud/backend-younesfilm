@@ -11,5 +11,13 @@
       "use": "@vercel/static"
     }
   ],
-  "routes": [{ "src": "/(.*)", "dest": "/" }]
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/",
+      "functions": {
+        "maxRequestBodySize": "100mb"
+      }
+    }
+  ]
 }
