@@ -28,8 +28,14 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(compression());
-app.use(bodyParser.json({ limit: "250mb" })); // Increase the limit as needed
-app.use(bodyParser.urlencoded({ limit: "250mb", extended: true }));
+app.use(
+  bodyParser.urlencoded({
+    limit: "500mb",
+    parameterLimit: 100000,
+    extended: true,
+  })
+);
+app.use(bodyParser.json({ limit: "500mb" })); // Increase the limit as needed
 
 // app.use(express.json({ limit: "90mb" }));
 // app.use(express.urlencoded({ extended: true, limit: "90mb" }));
