@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import ProjectRoter from "./Routes/Project.js";
+import CategoriesRoter from "./Routes/Category.js";
 import compression from "compression";
 import bodyParser from "body-parser";
 const app = express();
@@ -48,3 +49,4 @@ app.get("/", (req, res) => {
     .json({ message: "Master Server is Working Seccussfully." });
 });
 app.use("/api", ProjectRoter);
+app.use("/api", CategoriesRoter);
