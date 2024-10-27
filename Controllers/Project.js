@@ -4,7 +4,7 @@ import Model from "../Models/Project.js";
 export const getProjects = async (req, res, next) => {
   try {
     const projects = await Model.find();
-    return res.status(200).json({ message: "Done Get Projects", projects });
+    return res.status(200).json({ message: "Done Get ALL Projects", projects });
   } catch (error) {
     console.log(error.message);
     res
