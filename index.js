@@ -44,6 +44,6 @@ app.use(cookieParser());
 app.get("/", (req, res) => {
   return res
     .status(200)
-    .json({ message: "Main Server is Working Seccussfully." });
+    .json({ message: "Master Server is Working Seccussfully." });
 });
 app.use("/api", ProjectRoter);
