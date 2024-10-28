@@ -31,3 +31,34 @@ export const createCategories = async (req, res, next) => {
       .json({ error: `Error Create Category Controller: ${error.message}` });
   }
 };
+
+export const deleteCategory = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await Categories.findByIdAndDelete(id);
+    return res
+      .status(201)
+      .status({ message: "Done Delete Category Succefully." });
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(400)
+      .json({ error: `Error Delete Category Controller: ${error.message}` });
+  }
+};
+
+export const updateCategory = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { name } = req.body;
+    const category = await Categories.findByIdAndUpdate(id, { name });
+    return res
+      .status(201)
+      .status({ message: "Done Delete Category Succefully.", category });
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(400)
+      .json({ error: `Error Delete Category Controller: ${error.message}` });
+  }
+};
