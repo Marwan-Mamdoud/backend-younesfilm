@@ -216,7 +216,7 @@ export const sortedProjects = async (req, res, next) => {
 
   try {
     // Step 1: Iterate through the sorted data
-    if (!sortedData && sortedData?.length == 0) {
+    if (!sortedData && sortedData.length == 0) {
       return res.status(201).json({ message: "Allready Sorted" });
     } else {
       const project = await Promise.all(
