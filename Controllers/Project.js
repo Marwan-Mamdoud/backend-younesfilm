@@ -210,3 +210,28 @@ export const deleteImage = async (req, res, next) => {
       .json({ error: `Error Get One Project Controller: ${error.message}` });
   }
 };
+
+export const sortedProjects = async (req, res, next) => {
+  const sortedData = req.body; // Array of items with _id and other properties
+
+  try {
+    // Step 1: Iterate through the sorted data
+    const project = await Promise.all(
+      sortedData.map((item, index) => {
+        return Model.updateOne(
+          { _id: item._id }, // Find the item by its _id
+          { order: index } // Update the order field with the new position
+        );
+      })
+    );
+
+    return res
+      .status(201)
+      .json({ message: "Done Sorted Projects Succefully..", project });
+  } catch (error) {
+    console.log("Error From Sorted Projects Controller:", error.message);
+    res
+      .status(400)
+      .json({ error: `Error Sorted Projects Controller: ${error.message}` });
+  }
+};

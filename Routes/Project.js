@@ -5,6 +5,7 @@ import {
   deleteProject,
   getProject,
   getProjects,
+  sortedProjects,
   updatePorject,
 } from "../Controllers/Project.js";
 const router = Router();
@@ -20,5 +21,7 @@ router.put("/updateProject/:id", updatePorject);
 router.put("/deleteImage/:id", deleteImage);
 
 router.delete("/delete-project/:id", deleteProject);
+
+router.put("/sortedProjects", sortedProjects);
 
 export default router;
