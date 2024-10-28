@@ -56,7 +56,7 @@ export const updateCategory = async (req, res, next) => {
     await category.save();
     return res
       .status(201)
-      .status({ message: "Done Delete Category Succefully.", category });
+      .status({ message: "Done Update Category Succefully.", category });
   } catch (error) {
     console.log(error.message);
     res
