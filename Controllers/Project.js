@@ -216,20 +216,22 @@ export const sortedProjects = async (req, res, next) => {
 
   try {
     // Step 1: Iterate through the sorted data
-    if (sortedData && sortedData?.length > 0)
+    if (!sortedData && sortedData?.length == 0) {
       return res.status(201).json({ message: "Allready Sorted" });
-    const project = await Promise.all(
-      sortedData?.map((item, index) => {
-        return Model.updateOne(
-          { _id: item._id }, // Find the item by its _id
-          { order: index } // Update the order field with the new position
-        );
-      })
-    );
+    } else {
+      const project = await Promise.all(
+        sortedData?.map((item, index) => {
+          return Model.updateOne(
+            { _id: item._id }, // Find the item by its _id
+            { order: index } // Update the order field with the new position
+          );
+        })
+      );
 
-    return res
-      .status(201)
-      .json({ message: "Done Sorted Projects Succefully..", project });
+      return res
+        .status(201)
+        .json({ message: "Done Sorted Projects Succefully..", project });
+    }
   } catch (error) {
     console.log("Error From Sorted Projects Controller:", error.message);
     res
