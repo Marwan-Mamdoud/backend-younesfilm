@@ -51,7 +51,9 @@ export const updateCategory = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { name } = req.body;
-    const category = await Categories.findByIdAndUpdate(id, { name });
+    const category = await Categories.findById(id);
+    category.name = name || category.name;
+    await category.save();
     return res
       .status(201)
       .status({ message: "Done Delete Category Succefully.", category });
