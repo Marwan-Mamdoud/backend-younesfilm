@@ -14,7 +14,8 @@ const Schema = new mongoose.Schema({
   videos: [{ type: String }],
   crews: [{ name: String, job: String }],
   review: { type: String },
-  images: [{ type: String }],
+  category: { type: String },
+  images: [{ before: { type: String }, after: { type: String } }],
   imagesBehindScenes: [{ type: String }],
   reviewBehindScenes: { type: String },
 });
