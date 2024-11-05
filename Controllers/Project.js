@@ -59,7 +59,6 @@ export const addProject = async (req, res, next) => {
       });
       images.push({ before: before.secure_url, after: after.secure_url });
     }
-    // const ImagesBehindSceness = JSON.parse(ImagesBehindScenes);
     for (const img of ImagesBehindScenes) {
       const result = await cloudinary.uploader.upload(img, {
         format: "webp",
