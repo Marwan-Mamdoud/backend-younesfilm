@@ -16,7 +16,7 @@ const corsOptions = {
   origin: "https://younesfilm-frontend.vercel.app", // النطاق المسموح به
   // origin: "http://localhost:3000", // النطاق المسموح به
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  // allowedHeaders: ["Content-Type", "Authorization"],
+  // allowedHeaders: ["Content-Type", "Authorization"]
   credentials: true, // السماح بإرسال معلومات الاعتماد
 };
 
@@ -46,12 +46,7 @@ app.listen(process.env.PORT || 4000, () => {
 });
 mongoose
   .connect(
-    "mongodb+srv://marwan:3MW9P5ChWi6esAMz@data.st2xw.mongodb.net/projects",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      connectTimeoutMS: 40000,
-    }
+    "mongodb+srv://marwan:3MW9P5ChWi6esAMz@data.st2xw.mongodb.net/projects"
   )
   .then(() => console.log("Done Connect To Database.."))
   .catch((err) => {
