@@ -7,10 +7,10 @@ import CategoriesRoter from "./Routes/Category.js";
 import compression from "compression";
 import bodyParser from "body-parser";
 const app = express();
-app.use(bodyParser.json({ limit: "500mb" })); // Increase the limit as needed
+app.use(bodyParser.json({ limit: "150mb" })); // Increase the limit as needed
 app.use(
   bodyParser.urlencoded({
-    limit: "500mb",
+    limit: "150mb",
     parameterLimit: 100000,
     extended: true,
   })
@@ -24,7 +24,6 @@ mongoose
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true,
       connectTimeoutMS: 40000,
     }
   )
@@ -44,6 +43,14 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
+app.use((err, req, res, next) => {
+  if (err.type === "entity.too.large") {
+    return res.status(413).send("Payload too large");
+  }
+  // معالجة أنواع أخرى من الأخطاء
+  res.status(500).send("Internal Server Error");
+});
 
 // app.use(express.json({ limit: "90mb" }));
 // app.use(express.urlencoded({ extended: true, limit: "90mb" }));
