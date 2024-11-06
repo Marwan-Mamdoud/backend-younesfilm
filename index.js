@@ -21,7 +21,7 @@ app.listen(process.env.PORT || 4000, () => {
 mongoose
   .connect(
     "mongodb+srv://marwan:3MW9P5ChWi6esAMz@data.st2xw.mongodb.net/projects",
-    { useNewUrlParser: true, useUnifiedTopology: true }
+    { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
   )
   .then(() => console.log("Done Connect To Database.."))
   .catch((err) => {
