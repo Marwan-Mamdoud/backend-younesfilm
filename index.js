@@ -7,14 +7,8 @@ import CategoriesRoter from "./Routes/Category.js";
 import compression from "compression";
 import bodyParser from "body-parser";
 const app = express();
-app.use(bodyParser.json({ limit: "150mb" })); // Increase the limit as needed
-app.use(
-  bodyParser.urlencoded({
-    limit: "150mb",
-    parameterLimit: 100000,
-    extended: true,
-  })
-);
+app.use(express.json({ limit: "100mb" })); // Set limit to an appropriate value, e.g., 100MB
+app.use(express.urlencoded({ limit: "100mb", extended: true }));
 app.listen(process.env.PORT || 4000, () => {
   console.log("Done Connect To Server..");
 });
