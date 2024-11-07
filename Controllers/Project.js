@@ -7,12 +7,12 @@ export const getProjects = async (req, res, next) => {
     let projects = await Model.find().lean().sort({ _id: -1 });
     const sorted = await Sorted.findOne();
     // if (sorted && sorted.sortedData.length > 0) {
-    projects =
-      sorted?.sortedData.length > 0
-        ? sorted.sortedData.map((item) =>
-            projects.find((element) => element.name === item)
-          )
-        : projects;
+    // projects =
+    //   sorted?.sortedData.length > 0
+    //     ? sorted.sortedData.map((item) =>
+    //         projects.find((element) => element.name === item)
+    //       )
+    //     : projects;
     // projects = sortedProjects;
     return res.status(200).json({
       message: "Done Get ALL Projects",
