@@ -5,12 +5,15 @@ import {
   deleteProject,
   getProject,
   getProjects,
+  getsortd,
   sortedProjects,
   updatePorject,
 } from "../Controllers/Project.js";
 const router = Router();
 
 router.get("/get-projects", getProjects);
+
+router.get("/get-sorted", getsortd);
 
 router.post("/addProject", addProject);
 
