@@ -7,17 +7,10 @@ export const getProjects = async (req, res, next) => {
     let projects = await Model.find().lean().sort({ _id: -1 });
     const sorted = await Sorted.findOne();
     if (sorted && sorted.sortedData.length > 0) {
-      projects = sorted.sortedData.map((item) =>
-        projects.find((element) => element.name === item)
-      );
+      projects = sorted.sortedData.map((item) => {
+        return projects.find((element) => element.name === item);
+      });
     }
-    // projects =
-    //   sorted?.sortedData.length > 0
-    //     ? sorted.sortedData.map((item) =>
-    //         projects.find((element) => element.name === item)
-    //       )
-    //     : projects;
-    // projects = sortedProjects;
     return res.status(200).json({
       message: "Done Get ALL Projects",
       length: projects.length,
@@ -97,10 +90,10 @@ export const deleteProject = async (req, res, next) => {
       (item) => item !== project.name
     );
     sortedData.save();
-    if (data);
-    return res
-      .status(201)
-      .json({ message: "Done Delete Project Successfully." });
+    if (data)
+      return res
+        .status(201)
+        .json({ message: "Done Delete Project Successfully." });
   } catch (error) {
     console.log(error.message);
     res
