@@ -6,7 +6,7 @@ export const getProjects = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page) || 1; // Default page is 1
     const limit = 1;
-    const pages = Math.max((await Model.countDocuments()) / limit);
+    const pages = Math.ceil((await Model.countDocuments()) / limit);
     let projects = await Model.find()
       .lean()
       .limit(1)
