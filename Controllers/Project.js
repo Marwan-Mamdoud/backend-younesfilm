@@ -4,16 +4,24 @@ import Sorted from "../Models/Sorted.js";
 
 export const getProjects = async (req, res, next) => {
   try {
-    let projects = await Model.find().lean().sort({ _id: -1 });
-    const sorted = await Sorted.findOne();
-    if (sorted && sorted.sortedData.length > 0) {
-      projects = sorted.sortedData.map((item) => {
-        return projects.find((element) => element.name === item);
-      });
-    }
+    const page = parseInt(req.query.page) || 1; // Default page is 1
+    const limit = 1;
+    const pages = Math.max((await Model.countDocuments()) / limit);
+    let projects = await Model.find()
+      .lean()
+      .limit(1)
+      .skip((page - 1) * limit)
+      .sort({ _id: -1 });
+    // const sorted = await Sorted.findOne();
+    // if (sorted && sorted.sortedData.length > 0) {
+    //   projects = sorted.sortedData.map((item) => {
+    //     return projects.find((element) => element.name === item);
+    //   });
+    // }
     return res.status(200).json({
       message: "Done Get ALL Projects",
       length: projects.length,
+      pages,
       projects,
     });
   } catch (error) {
