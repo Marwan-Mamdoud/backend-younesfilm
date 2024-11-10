@@ -8,7 +8,6 @@ export const getProjects = async (req, res, next) => {
     const limit = 6;
     const pages = Math.ceil((await Model.countDocuments()) / limit);
     let projects = await Model.find()
-      .lean()
       .sort({ _id: -1 })
       .limit(limit)
       .skip((page - 1) * limit);
@@ -130,29 +129,19 @@ export const getProject = async (req, res, next) => {
 export const updatePorject = async (req, res, next) => {
   try {
     const { id } = req.params;
+    const project = await Model.findById(id);
     const {
       name,
       date,
       videos,
       crews,
       Images,
-      thumbnailImage,
       ImagesBehindScenes,
+      thumbnailImage,
       review,
       reviewBehindScenes,
     } = req.body;
 
-    const project = await Model.findById(id);
-
-    let sortedData = await Sorted.findOne();
-
-    sortedData.sortedData = sortedData.sortedData.map((item) => {
-      if (item === project.name) {
-        return (item = name || project.name);
-      } else {
-        return (item = item);
-      }
-    });
     project.name = name || project.name;
     project.thumbnail = thumbnailImage || project.thumbnail;
     project.date = date || project.date;
@@ -168,7 +157,6 @@ export const updatePorject = async (req, res, next) => {
     ];
     project.reviewBehindScenes =
       reviewBehindScenes || project.reviewBehindScenes;
-    await sortedData.save();
     await project.save();
     return res
       .status(201)
@@ -208,25 +196,7 @@ export const deleteImage = async (req, res, next) => {
 export const sortedProjects = async (req, res, next) => {
   try {
     let { order } = req.body; // Array of items with _id and other properties
-    // Step 1: Iterate through the sorted data
-    // if (sortedData && sortedData.length > 0) {
-    //   let data = sortedData.map((data) => data.name);
-    //   let sortedProjects = await Sorted.findOne();
-    //   if (!sortedProjects) {
-    //     sortedData = await new Sorted({
-    //       sortedData: data,
-    //     });
-    //     await sortedData.save();
-    //   } else {
-    //     sortedProjects.sortedData = data;
-    //     await sortedProjects.save();
-    //   }
-    //   return res
-    //     .status(201)
-    //     .json({ message: "Done Sorted Projects Succefully.." });
-    // } else {
-    //   return res.status(201).json({ message: "Allready Sorted" });
-    // }
+
     console.log(order);
     const bulkOps = order.map((item) => ({
       updateOne: {
