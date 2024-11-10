@@ -4,13 +4,12 @@ import Sorted from "../Models/Sorted.js";
 
 export const getProjects = async (req, res, next) => {
   try {
-    const page = parseInt(req.query.page) || 1; // Default page is 1
-    const limit = 6;
-    let projects = await Model.find()
-      .sort({ _id: -1 })
-      .limit(limit)
-      .skip((page - 1) * limit);
-    const pages = Math.ceil((await Model.countDocuments()) / limit);
+    // const page = parseInt(req.query.page) || 1; // Default page is 1
+    // const limit = 6;
+    let projects = await Model.find().sort({ order: 1 });
+    // .limit(limit)
+    // .skip((page - 1) * limit);
+    // const pages = Math.ceil((await Model.countDocuments()) / limit);
     // const sorted = await Sorted.findOne();
     // if (sorted && sorted.sortedData.length > 0) {
     //   projects = sorted.sortedData.map((item) => {
@@ -20,7 +19,7 @@ export const getProjects = async (req, res, next) => {
     res.status(200).json({
       message: "Done Get ALL Projects",
       length: projects.length,
-      pages,
+      // pages,
       projects,
     });
   } catch (error) {
@@ -59,6 +58,7 @@ export const addProject = async (req, res, next) => {
     } = req.body;
     const lastProject = await Model.findOne().sort({ order: -1 });
     const newOrder = lastProject ? lastProject.order + 1 : 0;
+    // const page = Math.ceil(((await Model.countDocuments()) + 1) / 6);
 
     const project = await new Model({
       name,
@@ -69,6 +69,7 @@ export const addProject = async (req, res, next) => {
       crews: JSON.parse(crews),
       review,
       order: newOrder,
+      // page,
       images: JSON.parse(Images),
       imagesBehindScenes: ImagesBehindScenes,
       reviewBehindScenes,
