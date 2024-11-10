@@ -7,17 +7,6 @@ import CategoriesRoter from "./Routes/Category.js";
 import compression from "compression";
 import bodyParser from "body-parser";
 const app = express();
-app.listen(process.env.PORT || 4000, () => {
-  console.log("Done Connect To Server..");
-});
-mongoose
-  .connect(
-    "mongodb+srv://marwan:3MW9P5ChWi6esAMz@data.st2xw.mongodb.net/projects"
-  )
-  .then(() => console.log("Done Connect To Database.."))
-  .catch((err) => {
-    console.log(err.message, "Database Error");
-  });
 
 app.use(express.json({ limit: "100mb" })); // Set limit to an appropriate value, e.g., 100MB
 app.use(express.urlencoded({ limit: "100mb", extended: true }));
@@ -53,3 +42,14 @@ app.get("/", (req, res) => {
 });
 app.use("/api", ProjectRoter);
 app.use("/api", CategoriesRoter);
+app.listen(process.env.PORT || 4000, () => {
+  console.log("Done Connect To Server..");
+});
+mongoose
+  .connect(
+    "mongodb+srv://marwan:3MW9P5ChWi6esAMz@data.st2xw.mongodb.net/projects"
+  )
+  .then(() => console.log("Done Connect To Database.."))
+  .catch((err) => {
+    console.log(err.message, "Database Error");
+  });

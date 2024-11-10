@@ -17,7 +17,7 @@ export const getProjects = async (req, res, next) => {
     //     return projects.find((element) => element.name === item);
     //   });
     // }
-    return res.status(200).json({
+    res.status(200).json({
       message: "Done Get ALL Projects",
       length: projects.length,
       pages,
@@ -116,8 +116,7 @@ export const getProject = async (req, res, next) => {
   try {
     const { id } = req.params;
     const project = await Model.findById(id);
-    if (project)
-      return res.status(200).json({ message: "Done Get Project", project });
+    res.status(200).json({ message: "Done Get Project", project });
   } catch (error) {
     console.log(error.message);
     res
