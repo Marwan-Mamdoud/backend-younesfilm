@@ -6,11 +6,11 @@ export const getProjects = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page) || 1; // Default page is 1
     const limit = 6;
-    const pages = Math.ceil((await Model.countDocuments()) / limit);
     let projects = await Model.find()
       .sort({ _id: -1 })
       .limit(limit)
       .skip((page - 1) * limit);
+    const pages = Math.ceil((await Model.countDocuments()) / limit);
     // const sorted = await Sorted.findOne();
     // if (sorted && sorted.sortedData.length > 0) {
     //   projects = sorted.sortedData.map((item) => {
