@@ -9,7 +9,7 @@ export const getProjects = async (req, res, next) => {
     const pages = Math.ceil((await Model.countDocuments()) / limit);
     let projects = await Model.find()
       .lean()
-      .limit(1)
+      .limit(limit)
       .skip((page - 1) * limit)
       .sort({ _id: -1 });
     // const sorted = await Sorted.findOne();
