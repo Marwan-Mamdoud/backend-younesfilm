@@ -9,9 +9,9 @@ export const getProjects = async (req, res, next) => {
     const pages = Math.ceil((await Model.countDocuments()) / limit);
     let projects = await Model.find()
       .lean()
+      .sort({ _id: -1 })
       .limit(limit)
-      .skip((page - 1) * limit)
-      .sort({ _id: -1 });
+      .skip((page - 1) * limit);
     // const sorted = await Sorted.findOne();
     // if (sorted && sorted.sortedData.length > 0) {
     //   projects = sorted.sortedData.map((item) => {
@@ -58,6 +58,8 @@ export const addProject = async (req, res, next) => {
       review,
       reviewBehindScenes,
     } = req.body;
+    const lastProject = await Model.findOne().sort({ order: -1 });
+    const newOrder = lastProject ? lastProject.order + 1 : 0;
 
     const project = await new Model({
       name,
@@ -67,6 +69,7 @@ export const addProject = async (req, res, next) => {
       videos: JSON.parse(videos),
       crews: JSON.parse(crews),
       review,
+      order: newOrder,
       images: JSON.parse(Images),
       imagesBehindScenes: ImagesBehindScenes,
       reviewBehindScenes,
@@ -203,28 +206,37 @@ export const deleteImage = async (req, res, next) => {
 };
 
 export const sortedProjects = async (req, res, next) => {
-  let sortedData = req.body; // Array of items with _id and other properties
-
   try {
+    let { order } = req.body; // Array of items with _id and other properties
     // Step 1: Iterate through the sorted data
-    if (sortedData && sortedData.length > 0) {
-      let data = sortedData.map((data) => data.name);
-      let sortedProjects = await Sorted.findOne();
-      if (!sortedProjects) {
-        sortedData = await new Sorted({
-          sortedData: data,
-        });
-        await sortedData.save();
-      } else {
-        sortedProjects.sortedData = data;
-        await sortedProjects.save();
-      }
-      return res
-        .status(201)
-        .json({ message: "Done Sorted Projects Succefully.." });
-    } else {
-      return res.status(201).json({ message: "Allready Sorted" });
-    }
+    // if (sortedData && sortedData.length > 0) {
+    //   let data = sortedData.map((data) => data.name);
+    //   let sortedProjects = await Sorted.findOne();
+    //   if (!sortedProjects) {
+    //     sortedData = await new Sorted({
+    //       sortedData: data,
+    //     });
+    //     await sortedData.save();
+    //   } else {
+    //     sortedProjects.sortedData = data;
+    //     await sortedProjects.save();
+    //   }
+    //   return res
+    //     .status(201)
+    //     .json({ message: "Done Sorted Projects Succefully.." });
+    // } else {
+    //   return res.status(201).json({ message: "Allready Sorted" });
+    // }
+    console.log(order);
+    const bulkOps = order.map((item) => ({
+      updateOne: {
+        filter: { _id: item._id },
+        update: { $set: { order: item.order } },
+      },
+    }));
+
+    await Model.bulkWrite(bulkOps);
+    return res.status(201).json({ message: "Done Sorted Sorted" });
   } catch (error) {
     console.log("Error From Sorted Projects Controller:", error.message);
     res

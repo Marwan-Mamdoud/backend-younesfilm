@@ -18,6 +18,7 @@ const Schema = new mongoose.Schema({
   images: [{ before: { type: String }, after: { type: String } }],
   imagesBehindScenes: [{ type: String }],
   reviewBehindScenes: { type: String },
+  order: { type: Number },
 });
 
 const Model = mongoose.model("Projects", Schema);
