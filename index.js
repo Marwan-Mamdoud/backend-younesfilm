@@ -14,7 +14,7 @@ app.use(express.urlencoded({ limit: "100mb", extended: true }));
 app.use(compression());
 
 const corsOptions = {
-  origin: "https://younesfilm-frontend.vercel.app", // النطاق المسموح به
+  origin: ["https://younesfilm-frontend.vercel.app", "http://127.0.0.1:5500"], // النطاق المسموح به
   // origin: "http://localhost:3000", // النطاق المسموح به
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   // allowedHeaders: ["Content-Type", "Authorization"]
