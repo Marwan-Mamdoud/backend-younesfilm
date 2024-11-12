@@ -5,6 +5,7 @@ import {
   deleteProject,
   getProject,
   getProjects,
+  getProjectsByCategory,
   getsortd,
   sortedProjects,
   updatePorject,
@@ -19,6 +20,8 @@ import {
 const router = Router();
 
 router.get("/get-projects", getProjects);
+
+router.get("/get-projects/:category", getProjectsByCategory);
 
 router.get("/get-sorted", getsortd);
 

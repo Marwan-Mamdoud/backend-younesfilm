@@ -30,6 +30,35 @@ export const getProjects = async (req, res, next) => {
   }
 };
 
+export const getProjectsByCategory = async (req, res, next) => {
+  try {
+    // const page = parseInt(req.query.page) || 1; // Default page is 1
+    // const limit = 6;
+    const { category } = req.params;
+    let projects = await Model.find({ category: category }).sort({ order: 1 });
+    // .limit(limit)
+    // .skip((page - 1) * limit);
+    // const pages = Math.ceil((await Model.countDocuments()) / limit);
+    // const sorted = await Sorted.findOne();
+    // if (sorted && sorted.sortedData.length > 0) {
+    //   projects = sorted.sortedData.map((item) => {
+    //     return projects.find((element) => element.name === item);
+    //   });
+    // }
+    res.status(200).json({
+      message: "Done Get ALL Projects",
+      length: projects.length,
+      // pages,
+      projects,
+    });
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(400)
+      .json({ error: `Error Get Projects Controller: ${error.message}` });
+  }
+};
+
 export const getsortd = async (req, res, next) => {
   try {
     const sorted = await Sorted.find();
