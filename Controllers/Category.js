@@ -12,6 +12,19 @@ export const getCategories = async (req, res, next) => {
   }
 };
 
+export const getCategoriesByName = async (req, res, next) => {
+  try {
+    const { name } = req.params;
+    const categories = await Categories.find({ name: name });
+    res.status(200).json({ message: "Done Get All Categories", categories });
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(400)
+      .json({ error: `Error Get Categories Controller: ${error.message}` });
+  }
+};
+
 export const createCategories = async (req, res, next) => {
   try {
     const { name } = req.body;
