@@ -106,9 +106,9 @@ export const addProject = async (req, res, next) => {
       reviewBehindScenes,
     });
     await project.save();
-    const sortedData = await Sorted.findOne();
-    sortedData.sortedData.unshift(project.name);
-    sortedData.save();
+    // const sortedData = await Sorted.findOne();
+    // sortedData.sortedData.unshift(project.name);
+    // sortedData.save();
     return res.status(201).json({
       message: "Done Create Project Successfully.",
 
