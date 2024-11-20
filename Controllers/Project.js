@@ -79,6 +79,7 @@ export const addProject = async (req, res, next) => {
       videos,
       crews,
       category,
+      style,
       Images,
       thumbnailImage,
       ImagesBehindScenes,
@@ -94,6 +95,7 @@ export const addProject = async (req, res, next) => {
       thumbnail: thumbnailImage,
       category,
       date,
+      style,
       videos: JSON.parse(videos),
       crews: JSON.parse(crews),
       review,
@@ -164,6 +166,7 @@ export const updatePorject = async (req, res, next) => {
       date,
       videos,
       crews,
+      style,
       Images,
       ImagesBehindScenes,
       thumbnailImage,
@@ -174,6 +177,7 @@ export const updatePorject = async (req, res, next) => {
     project.name = name || project.name;
     project.thumbnail = thumbnailImage || project.thumbnail;
     project.date = date || project.date;
+    project.style = style || project.style;
     project.videos =
       JSON.parse(videos).length > 0 ? JSON.parse(videos) : project.videos;
     project.crews =

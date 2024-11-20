@@ -11,6 +11,7 @@ const Schema = new mongoose.Schema({
       year: "numeric",
     }),
   },
+  style: { type: String },
   videos: [{ type: String }],
   crews: [{ name: String, job: String }],
   review: { type: String },
