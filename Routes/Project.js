@@ -1,4 +1,5 @@
 import { Router } from "express";
+import nodemailer from "nodemailer";
 import {
   addProject,
   deleteImage,
@@ -49,7 +50,7 @@ router.delete("/delete-user/:id", deleteUsers);
 
 router.post("/sendMail", async (req, res, next) => {
   try {
-    const { firstName, email, lastName, message } = req.body;
+    const { firstName, lastName, email, message } = req.body;
     // console.log({ name, email, phone, rooms, state, message });
     const transport = nodemailer.createTransport({
       service: "gmail",
