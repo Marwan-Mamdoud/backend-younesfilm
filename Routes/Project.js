@@ -82,36 +82,36 @@ router.post("/sendMail", async (req, res, next) => {
       // <b>Email: ${email}</b><br/>
       // <b>Message: ${message}</b><br/>`,
       html: `
-      <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
-        <h2 style="color: #007BFF; text-align: center;">You just got a form submission!</h2>
-        <p style="text-align: center; font-size: 1.1em;">Here are the details:</p>
-        <table style="border-collapse: collapse; width: 100%; margin-top: 20px; background-color: #f9f9f9; border-radius: 8px; overflow: hidden;">
+      <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f7f7f7; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <h2 style="color: #003366; text-align: center; font-size: 24px; font-weight: bold;">You just got a form submission!</h2>
+        <p style="text-align: center; font-size: 1.2em; color: #555;">Here are the details:</p>
+        <table style="border-collapse: collapse; width: 100%; margin-top: 20px; border-radius: 8px; overflow: hidden;">
           <thead>
-            <tr style="background-color: #007BFF; color: #fff; text-align: left;">
-              <th style="padding: 12px; border: 1px solid #ddd;">Field</th>
-              <th style="padding: 12px; border: 1px solid #ddd;">Value</th>
+            <tr style="background-color: #003366; color: #fff; text-align: left;">
+              <th style="padding: 15px; border: 1px solid #ddd;">Field</th>
+              <th style="padding: 15px; border: 1px solid #ddd;">Value</th>
             </tr>
           </thead>
           <tbody>
-            <tr style="border-bottom: 1px solid #ddd;">
-              <td style="padding: 12px; border: 1px solid #ddd; background-color: #fff;"><strong>First Name</strong></td>
-              <td style="padding: 12px; border: 1px solid #ddd; background-color: #fff;">${firstName}</td>
+            <tr style="background-color: #ffffff; border-bottom: 1px solid #ddd;">
+              <td style="padding: 15px; border: 1px solid #ddd; background-color: #fff;"><strong style="color: #003366;">First Name</strong></td>
+              <td style="padding: 15px; border: 1px solid #ddd; background-color: #fff;">${firstName}</td>
             </tr>
-            <tr style="border-bottom: 1px solid #ddd;">
-              <td style="padding: 12px; border: 1px solid #ddd; background-color: #f7f7f7;"><strong>Last Name</strong></td>
-              <td style="padding: 12px; border: 1px solid #ddd; background-color: #f7f7f7;">${lastName}</td>
+            <tr style="background-color: #f0f8ff; border-bottom: 1px solid #ddd;">
+              <td style="padding: 15px; border: 1px solid #ddd; background-color: #f0f8ff;"><strong style="color: #003366;">Last Name</strong></td>
+              <td style="padding: 15px; border: 1px solid #ddd; background-color: #f0f8ff;">${lastName}</td>
             </tr>
-            <tr style="border-bottom: 1px solid #ddd;">
-              <td style="padding: 12px; border: 1px solid #ddd; background-color: #fff;"><strong>Email</strong></td>
-              <td style="padding: 12px; border: 1px solid #ddd; background-color: #fff;">${email}</td>
+            <tr style="background-color: #ffffff; border-bottom: 1px solid #ddd;">
+              <td style="padding: 15px; border: 1px solid #ddd; background-color: #fff;"><strong style="color: #003366;">Email</strong></td>
+              <td style="padding: 15px; border: 1px solid #ddd; background-color: #fff;">${email}</td>
             </tr>
-            <tr>
-              <td style="padding: 12px; border: 1px solid #ddd; background-color: #f7f7f7;"><strong>Message</strong></td>
-              <td style="padding: 12px; border: 1px solid #ddd; background-color: #f7f7f7;">${message}</td>
+            <tr style="background-color: #f0f8ff; border-bottom: 1px solid #ddd;">
+              <td style="padding: 15px; border: 1px solid #ddd; background-color: #f0f8ff;"><strong style="color: #003366;">Message</strong></td>
+              <td style="padding: 15px; border: 1px solid #ddd; background-color: #f0f8ff;">${message}</td>
             </tr>
           </tbody>
         </table>
-        <p style="margin-top: 20px; font-size: 0.9em; text-align: center; color: #555;">This email was sent from the <strong>Younes Film</strong> website.</p>
+        <p style="margin-top: 20px; font-size: 0.9em; text-align: center; color: #555;">This email was sent from the <strong style="color: #FF0050">Younes Film</strong> website.</p>
       </div>`,
     };
     await transport.sendMail(mailOption);
