@@ -67,8 +67,8 @@ router.post("/sendMail", async (req, res, next) => {
         name: `Younes Film`,
         address: `${email}`,
       },
-      to: ["ibrahimyounes646@gmail.com", "marwanmamdouh159@gmail.com"],
-      // to: "marwanmamdouh159@gmail.com",
+      // to: ["ibrahimyounes646@gmail.com", "marwanmamdouh159@gmail.com"],
+      to: "marwanmamdouh159@gmail.com",
       subject: "Younes Film Email",
       text: "You just got a form submission!",
       // html: `<br/><p>You just got a form submission!</p><br/><br/>
@@ -82,48 +82,44 @@ router.post("/sendMail", async (req, res, next) => {
       // <b>Email: ${email}</b><br/>
       // <b>Message: ${message}</b><br/>`,
       html: `
-      <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f7f7f7; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
-        <!-- Logo Section -->
-        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+  <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f7f7f7; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <!-- Logo and Heading Section -->
+    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
       <img src="https://cdn.prod.website-files.com/65874245451824c5a44fcc6e/658a0e755c5877297a8c70e5_YF.svg" alt="Younes Film Logo" style="max-width: 50px; height: auto; margin-right: 10px;"/>
-      <h2 style="color: #000000; font-size: 24px; font-weight: bold; margin: 0;">YounesFilm</h2>
+      <h2 style="color: #000000; font-size: 24px; font-weight: bold; margin: 0;">You just got a form submission!</h2>
     </div>
+
+    <!-- Table -->
+    <table style="border-collapse: collapse; width: 100%; margin-top: 20px; border-radius: 8px; overflow: hidden;">
+      <thead>
+        <tr style="background-color: #000000; color: #fff; text-align: left;">
+          <th style="padding: 15px; border: 1px solid #ddd;">Field</th>
+          <th style="padding: 15px; border: 1px solid #ddd;">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background-color: #ffffff; border-bottom: 1px solid #ddd;">
+          <td style="padding: 15px; border: 1px solid #ddd; background-color: #fff;"><strong style="color: #000000;">First Name</strong></td>
+          <td style="padding: 15px; border: 1px solid #ddd; background-color: #fff;">${firstName}</td>
+        </tr>
+        <tr style="background-color: #d3d3d3; border-bottom: 1px solid #ddd;">
+          <td style="padding: 15px; border: 1px solid #ddd; background-color: #d3d3d3;"><strong style="color: #000000;">Last Name</strong></td>
+          <td style="padding: 15px; border: 1px solid #ddd; background-color: #d3d3d3;">${lastName}</td>
+        </tr>
+        <tr style="background-color: #ffffff; border-bottom: 1px solid #ddd;">
+          <td style="padding: 15px; border: 1px solid #ddd; background-color: #fff;"><strong style="color: #000000;">Email</strong></td>
+          <td style="padding: 15px; border: 1px solid #ddd; background-color: #fff;">${email}</td>
+        </tr>
+        <tr style="background-color: #d3d3d3; border-bottom: 1px solid #ddd;">
+          <td style="padding: 15px; border: 1px solid #ddd; background-color: #d3d3d3;"><strong style="color: #000000;">Message</strong></td>
+          <td style="padding: 15px; border: 1px solid #ddd; background-color: #d3d3d3;">${message}</td>
+        </tr>
+      </tbody>
+    </table>
     
-        <!-- Main Heading -->
-        <h2 style="color: #000000; text-align: center; font-size: 24px; font-weight: bold;">You just got a form submission!</h2>
-        <p style="text-align: center; font-size: 1.2em; color: #555;">Here are the details:</p>
-        
-        <!-- Table -->
-        <table style="border-collapse: collapse; width: 100%; margin-top: 20px; border-radius: 8px; overflow: hidden;">
-          <thead>
-            <tr style="background-color: #000000; color: #fff; text-align: left;">
-              <th style="padding: 15px; border: 1px solid #ddd;">Field</th>
-              <th style="padding: 15px; border: 1px solid #ddd;">Value</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="background-color: #ffffff; border-bottom: 1px solid #ddd;">
-              <td style="padding: 15px; border: 1px solid #ddd; background-color: #fff;"><strong style="color: #000000;">First Name</strong></td>
-              <td style="padding: 15px; border: 1px solid #ddd; background-color: #fff;">${firstName}</td>
-            </tr>
-            <tr style="background-color: #d3d3d3; border-bottom: 1px solid #ddd;">
-              <td style="padding: 15px; border: 1px solid #ddd; background-color: #d3d3d3;"><strong style="color: #000000;">Last Name</strong></td>
-              <td style="padding: 15px; border: 1px solid #ddd; background-color: #d3d3d3;">${lastName}</td>
-            </tr>
-            <tr style="background-color: #ffffff; border-bottom: 1px solid #ddd;">
-              <td style="padding: 15px; border: 1px solid #ddd; background-color: #fff;"><strong style="color: #000000;">Email</strong></td>
-              <td style="padding: 15px; border: 1px solid #ddd; background-color: #fff;">${email}</td>
-            </tr>
-            <tr style="background-color: #d3d3d3; border-bottom: 1px solid #ddd;">
-              <td style="padding: 15px; border: 1px solid #ddd; background-color: #d3d3d3;"><strong style="color: #000000;">Message</strong></td>
-              <td style="padding: 15px; border: 1px solid #ddd; background-color: #d3d3d3;">${message}</td>
-            </tr>
-          </tbody>
-        </table>
-        
-        <!-- Footer -->
-        <p style="margin-top: 20px; font-size: 0.9em; text-align: center; color: #555;">This email was sent from the <strong>Younes Film</strong> website.</p>
-      </div>`,
+    <!-- Footer -->
+    <p style="margin-top: 20px; font-size: 0.9em; text-align: center; color: #555;">This email was sent from the <strong style='color:#ff0050'>Younes Film</strong> website.</p>
+  </div>`,
     };
     await transport.sendMail(mailOption);
     console.log("done");
