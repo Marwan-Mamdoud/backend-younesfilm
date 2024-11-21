@@ -64,7 +64,7 @@ router.post("/sendMail", async (req, res, next) => {
     });
     const mailOption = {
       from: {
-        name: `Real State`,
+        name: `Younes Film`,
         address: `${email}`,
       },
       to: ["ibrahimyounes646@gmail.com", "marwanmamdouh159@gmail.com"],
