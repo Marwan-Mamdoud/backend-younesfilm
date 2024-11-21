@@ -82,33 +82,36 @@ router.post("/sendMail", async (req, res, next) => {
       // <b>Email: ${email}</b><br/>
       // <b>Message: ${message}</b><br/>`,
       html: `
-      <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-        <h2 style="color: #007BFF;">You just got a form submission!</h2>
-        <hr/>
-        <p><strong>Form:</strong> Booking From</p>
-        <p><strong>Site:</strong> Younes Film</p>
-        <hr/>
-        <h3 style="color: #007BFF;">Submitted Content:</h3>
-        <table style="border-collapse: collapse; width: 100%; margin-top: 10px;">
-          <tr>
-            <td style="padding: 8px; border: 1px solid #ddd;"><strong>First Name</strong></td>
-            <td style="padding: 8px; border: 1px solid #ddd;">${firstName}</td>
-          </tr>
-          <tr>
-            <td style="padding: 8px; border: 1px solid #ddd;"><strong>Last Name</strong></td>
-            <td style="padding: 8px; border: 1px solid #ddd;">${lastName}</td>
-          </tr>
-          <tr>
-            <td style="padding: 8px; border: 1px solid #ddd;"><strong>Email</strong></td>
-            <td style="padding: 8px; border: 1px solid #ddd;">${email}</td>
-          </tr>
-          <tr>
-            <td style="padding: 8px; border: 1px solid #ddd;"><strong>Message</strong></td>
-            <td style="padding: 8px; border: 1px solid #ddd;">${message}</td>
-          </tr>
+      <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+        <h2 style="color: #007BFF; text-align: center;">You just got a form submission!</h2>
+        <p style="text-align: center; font-size: 1.1em;">Here are the details:</p>
+        <table style="border-collapse: collapse; width: 100%; margin-top: 20px; background-color: #f9f9f9; border-radius: 8px; overflow: hidden;">
+          <thead>
+            <tr style="background-color: #007BFF; color: #fff; text-align: left;">
+              <th style="padding: 12px; border: 1px solid #ddd;">Field</th>
+              <th style="padding: 12px; border: 1px solid #ddd;">Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #ddd;">
+              <td style="padding: 12px; border: 1px solid #ddd; background-color: #fff;"><strong>First Name</strong></td>
+              <td style="padding: 12px; border: 1px solid #ddd; background-color: #fff;">${firstName}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #ddd;">
+              <td style="padding: 12px; border: 1px solid #ddd; background-color: #f7f7f7;"><strong>Last Name</strong></td>
+              <td style="padding: 12px; border: 1px solid #ddd; background-color: #f7f7f7;">${lastName}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #ddd;">
+              <td style="padding: 12px; border: 1px solid #ddd; background-color: #fff;"><strong>Email</strong></td>
+              <td style="padding: 12px; border: 1px solid #ddd; background-color: #fff;">${email}</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border: 1px solid #ddd; background-color: #f7f7f7;"><strong>Message</strong></td>
+              <td style="padding: 12px; border: 1px solid #ddd; background-color: #f7f7f7;">${message}</td>
+            </tr>
+          </tbody>
         </table>
-        <hr/>
-        <p style="font-size: 0.9em; color: #555;">This email was sent from the <strong>Younes Film</strong> website.</p>
+        <p style="margin-top: 20px; font-size: 0.9em; text-align: center; color: #555;">This email was sent from the <strong>Younes Film</strong> website.</p>
       </div>`,
     };
     await transport.sendMail(mailOption);
