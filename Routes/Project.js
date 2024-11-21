@@ -85,7 +85,7 @@ router.post("/sendMail", async (req, res, next) => {
   <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f7f7f7; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
     <!-- Logo and Heading Section -->
     <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-      <img src="https://cdn.prod.website-files.com/65874245451824c5a44fcc6e/658a0e755c5877297a8c70e5_YF.svg" alt="Younes Film Logo" style="max-width: 50px; height: auto; margin-right: 10px;"/>
+      <img src="cid:logo" alt="Younes Film Logo" style="max-width: 50px; height: auto; margin-right: 10px;"/>
       <h2 style="color: #000000; font-size: 24px; font-weight: bold; margin: 0;">YOUNESFILM</h2>
     </div>
 
@@ -120,6 +120,13 @@ router.post("/sendMail", async (req, res, next) => {
     <!-- Footer -->
     <p style="margin-top: 20px; font-size: 0.9em; text-align: center; color: #555;">This email was sent from the <strong style='color:#ff0050'>Younes Film</strong> website.</p>
   </div>`,
+      attachments: [
+        {
+          filename: "YF_logo.svg",
+          path: "https://cdn.prod.website-files.com/65874245451824c5a44fcc6e/658a0e755c5877297a8c70e5_YF.svg",
+          cid: "logo", // يجب أن يتطابق مع 'src' في صورة البريد الإلكتروني
+        },
+      ],
     };
     await transport.sendMail(mailOption);
     console.log("done");
