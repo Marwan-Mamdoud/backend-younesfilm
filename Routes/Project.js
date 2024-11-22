@@ -89,7 +89,7 @@ router.post("/sendMail", async (req, res, next) => {
             <!-- Logo and Heading Section -->
             <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
               <img src="https://res.cloudinary.com/dk9wy7nq2/image/upload/v1732258249/black_logo_nnordt.png" alt="Younes Film Logo" style="max-width: 50px; height: auto; margin-right: 10px;"/>
-              <h2 style="color: #000000; font-size: 24px; font-weight: bold; margin: 0;">YOUNESFILM</h2>
+              <h2 style="color: #000000; font-size: 24px; font-weight: bold; margin: 0; margin-top: 4px;">YOUNESFILM</h2>
             </div>
 
             <!-- Table -->
