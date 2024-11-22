@@ -88,7 +88,7 @@ router.post("/sendMail", async (req, res, next) => {
           <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f7f7f7; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
             <!-- Logo and Heading Section -->
             <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-              <img src="https://files.pumble.com/671023af6df3d459c1245360/671023af6df3d459c1245361/673f3d83b0ecb155af370896/673f3d83b0ecb155af370895/MUVKMRlJ-black%5Flogo.png" alt="Younes Film Logo" style="max-width: 50px; height: auto; margin-right: 10px;"/>
+              <img src="https://i.pinimg.com/474x/7f/5b/8d/7f5b8d1843be3e193f78ee10f6c1c269.jpg" alt="Younes Film Logo" style="max-width: 50px; height: auto; margin-right: 10px;"/>
               <h2 style="color: #000000; font-size: 24px; font-weight: bold; margin: 0;">YOUNESFILM</h2>
             </div>
 
