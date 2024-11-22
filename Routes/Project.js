@@ -70,8 +70,8 @@ router.post("/sendMail", async (req, res, next) => {
         name: `Younes Film`,
         address: `${email}`,
       },
-      // to: ["ibrahimyounes646@gmail.com", "marwanmamdouh159@gmail.com"],
-      to: "marwanmamdouh159@gmail.com",
+      to: ["ibrahimyounes646@gmail.com", "marwanmamdouh159@gmail.com"],
+      // to: "marwanmamdouh159@gmail.com",
       subject: "Younes Film Email",
       text: "You just got a form submission!",
       // html: `<br/><p>You just got a form submission!</p><br/><br/>
