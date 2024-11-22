@@ -32,7 +32,7 @@ export const getProjects = async (req, res, next) => {
 
 export const getPorjectsForHome = async (req, res, next) => {
   try {
-    const projects = Model.find().limit(6);
+    const projects = await Model.find().limit(6);
     res.status(200).json({
       message: "Done get All Projects",
       projects,
