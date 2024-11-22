@@ -30,6 +30,21 @@ export const getProjects = async (req, res, next) => {
   }
 };
 
+export const getPorjectsForHome = async (req, res, next) => {
+  try {
+    const projects = Model.find().limit(6);
+    res.status(200).json({
+      message: "Done get All Projects",
+      projects,
+    });
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(400)
+      .json({ error: `Error Get Projects Controller: ${error.message}` });
+  }
+};
+
 export const getProjectsByCategory = async (req, res, next) => {
   try {
     // const page = parseInt(req.query.page) || 1; // Default page is 1

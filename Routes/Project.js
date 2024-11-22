@@ -4,6 +4,7 @@ import {
   addProject,
   deleteImage,
   deleteProject,
+  getPorjectsForHome,
   getProject,
   getProjects,
   getProjectsByCategory,
@@ -21,6 +22,8 @@ import {
 const router = Router();
 
 router.get("/get-projects", getProjects);
+
+router.get("/get-projects-home", getPorjectsForHome);
 
 router.get("/get-projects/:category", getProjectsByCategory);
 
