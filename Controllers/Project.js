@@ -106,24 +106,25 @@ export const addProject = async (req, res, next) => {
     // const page = Math.ceil(((await Model.countDocuments()) + 1) / 6);
 
     const project = await new Model({
-      name,
+      name: JSON.parse(name),
       thumbnail: thumbnailImage,
       category,
       date,
       style,
       videos: JSON.parse(videos),
       crews: JSON.parse(crews),
-      review,
+      review: JSON.parse(review),
       order: newOrder,
       // page,
       images: JSON.parse(Images),
       imagesBehindScenes: ImagesBehindScenes,
-      reviewBehindScenes,
+      reviewBehindScenes: JSON.parse(reviewBehindScenes),
     });
     await project.save();
     // const sortedData = await Sorted.findOne();
     // sortedData.sortedData.unshift(project.name);
     // sortedData.save();
+    console.log(project, "project");
     return res.status(201).json({
       message: "Done Create Project Successfully.",
 
@@ -189,7 +190,7 @@ export const updatePorject = async (req, res, next) => {
       reviewBehindScenes,
     } = req.body;
 
-    project.name = name || project.name;
+    project.name = JSON.parse(name) || project.name;
     project.thumbnail = thumbnailImage || project.thumbnail;
     project.date = date || project.date;
     project.style = style || project.style;
@@ -197,14 +198,14 @@ export const updatePorject = async (req, res, next) => {
       JSON.parse(videos).length > 0 ? JSON.parse(videos) : project.videos;
     project.crews =
       JSON.parse(crews).length > 0 ? JSON.parse(crews) : project.crews;
-    project.review = review || project.review;
+    project.review = JSON.parse(review) || project.review;
     project.images = [...project.images, ...JSON.parse(Images)];
     project.imagesBehindScenes = [
       ...project.imagesBehindScenes,
       ...ImagesBehindScenes,
     ];
     project.reviewBehindScenes =
-      reviewBehindScenes || project.reviewBehindScenes;
+      JSON.parse(reviewBehindScenes) || project.reviewBehindScenes;
     await project.save();
     return res
       .status(201)
