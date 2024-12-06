@@ -143,11 +143,11 @@ export const deleteProject = async (req, res, next) => {
     const { id } = req.params;
     const project = await Model.findById(id);
     const data = await Model.findByIdAndDelete(id);
-    const sortedData = await Sorted.findOne();
-    sortedData.sortedData = sortedData.sortedData.filter(
-      (item) => item !== project.name
-    );
-    sortedData.save();
+    // const sortedData = await Sorted.findOne();
+    // sortedData.sortedData = sortedData.sortedData.filter(
+    //   (item) => item !== project.name[0].en
+    // );
+    // sortedData.save();
     if (data)
       return res
         .status(201)
