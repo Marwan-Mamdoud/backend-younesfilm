@@ -19,6 +19,7 @@ const corsOptions = {
     "https://younesfilm-frontend.vercel.app",
     "http://127.0.0.1:5500",
     "https://younes-flim.vercel.app",
+    "https://www.younesfilm.com/",
   ], // النطاق المسموح به
   // origin: "*", // النطاق المسموح به
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
